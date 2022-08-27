@@ -1,0 +1,117 @@
+#include<bits/stdc++.h>
+#include<iostream>
+#include<random>
+#include<ctime>
+#include<cstdlib>
+using namespace std;
+int Q_No=1;
+int CORRECT=0;
+int WRONG=0;
+bool ask[10]={true,true,true,true,true,true,true,true,true,true};
+ void display()
+{
+	system("CLS");
+	cout<<"Question No:"<<Q_No<<endl;
+	cout<<" Correct Answers:"<<CORRECT<<endl;
+	cout<<" Wrong Answers"<<WRONG<<endl;
+	}
+void question(string questions,string a,string b,string c,string d,char correct)
+{
+	cout<<questions<<endl;
+	cout<<"A) "<<a<<endl;
+	cout<<"B) "<<b<<endl;
+	cout<<"C) "<<c<<endl;
+	cout<<"D) "<<d<<endl;
+	char answer;
+	cin>>answer;
+	if(answer==correct){
+		CORRECT ++;
+	}
+	else{
+	
+	 WRONG ++;
+	 }
+Q_No++;
+display();
+	 
+
+}
+
+	void display_random_question()
+{
+	srand(time(0));
+	bool is_question_remaining=false;
+	for(int i=0;i<10;i++)
+	{
+		if(ask[i])
+		{
+			is_question_remaining=true;
+			break;
+		}
+	}
+	while(1)
+	{
+		int no=rand()%10;
+		if(ask[no])
+		{
+			ask[no]=false;
+			switch(no)
+			{
+				case 0:question("In which year, India got independence?","1945","1941","1947","1950",'c');
+				break;
+				case 1:question("How many times Australia won the Cricket World Cup?","1","5","4","3",'b');
+				break;
+				case 2:question("How many districts are there in West Bengal?","19","15","23","21",'c');
+				break;
+				case 3:question("Name the cricket stadium present in Mumbai","Eden Gardens","Wankhede","Chinnaswamy","P A Chidambaram",'b');
+				break;
+				case 4:question("Which is the fifth planet in the solar system if counted from the sun?","Earth","Mars","Jupiter","Saturn",'c');
+				break;
+				case 5:question("Which among the following is the national bird of India?","Peacock","Crow","Pigeon","Hen",'a');
+				break;
+				case 6:question("Who won the first football worldcup?","Italy","Uruguay","Brazil","Spain",'b');
+				break;
+				case 7:question("How many bones are there in human body?","206","213","205","198",'a');
+				break;
+				case 8:question("Which cricketer has the highest individual Test run?","Brian Lara","Sachin Tendulkar","Virat Kohli","Ricky Pointing",'a');
+				break;
+				case 9:question("Milky Way Galaxy was first seen by?","Martin","Marconi","Newton","Galileo",'d');
+				break;
+			  default:cout<<"Wrong Choice";
+				break;
+			}
+		}
+		
+	}
+
+}
+void result()
+{
+	system("CLS");
+	
+	if(CORRECT>WRONG)
+	{
+		cout<<"Result=PASS"<<endl;
+	}
+	else if(WRONG>CORRECT)
+	{
+		cout<<"Result=FAIL"<<endl;
+	}
+	else
+	{
+		cout<<"Result=Tie"<<endl;
+		
+	}
+	cout<<"Total Question:"<<Q_No-1<<endl;
+	cout<<"Correct Answer="<<CORRECT<<endl;
+	cout<<"Wrong Answer="<<WRONG<<endl;
+	
+}
+
+int main()
+{
+	display();
+	display_random_question();
+	result();
+	return 0;
+}
